@@ -47,37 +47,47 @@ try{
           <div class="panel-body">
             <form action="Lab10.php" method="get" class="form-horizontal">
               <div class="form-inline">
-              <select name="continents[]" class="form-control">
-                <option value="0">Select Continent</option>
-                <?php
-                //+++++++++++continents+++++++++++++
-                try{
-                    while($row = $resultContinent->fetch()) {//fetch_assoc()
-                        echo '<option value=' . $row['ContinentCode'] . '>' . $row['ContinentName'] . '</option>';
-                    }
-                }catch(PDOException $e){
-                    die( $e->getMessage() );
-                }
-                ?>
-              </select>
+                  <form>
+                      <select name="continents[]" class="form-control">
+                          <option value="0">Select Continent</option>
+                          <?php
+                          //+++++++++++continents+++++++++++++
+                          try{
+                              while($row = $resultContinent->fetch()) {//fetch_assoc()
+                                  echo '<option value=' . $row['ContinentCode'] . '>' . $row['ContinentName'] . '</option>';
+                              }
+                          }catch(PDOException $e){
+                              die( $e->getMessage() );
+                          }
+                          ?>
+                      </select>
 
-              <select name="countries[]" class="form-control">
+                      <select name="countries[]" class="form-control">
 
-                <option value="0">Select Country</option>
-                <?php
-                //++++++++++countries+++++++++++++
-                try{
-                    while($row = $resultCountries->fetch()) {//fetch_assoc()
-                        echo '<option value=' . $row['ISO'] . '>' . $row['CountryName'] . '</option>';
-                    }
-                }catch(PDOException $e2){
-                    die( $e2->getMessage() );
-                }
-                ?>
-              </select>
+                          <option value="0">Select Country</option>
+                          <?php
+                          //++++++++++countries+++++++++++++
+                          try{
+                              while($row = $resultCountries->fetch()) {//fetch_assoc()
+                                  echo '<option value=' . $row['ISO'] . '>' . $row['CountryName'] . '</option>';
+                              }
+                          }catch(PDOException $e2){
+                              die( $e2->getMessage() );
+                          }
+                          ?>
+                      </select>
 
-              <input type="text"  placeholder="Search title" class="form-control" name=title>
-              <button type="submit" class="btn btn-primary" name="button">Filter</button>
+                      <input type="text"  placeholder="Search title" class="form-control" name="title" onclick="loadXMLDoc()">
+                      <button type="submit" class="btn btn-primary" name="button">Filter</button>
+                  </form>
+                  <script>
+                      function loadXMLDoc(){
+                          xmlhttp = new XMLHttpRequest();//创建XMLHttpRequest对象
+                          xmlhttp.open("GET","test1.txt",true);
+                          xmlhttp.send();
+                      }
+                  </script>
+
               </div>
             </form>
 

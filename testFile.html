@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<form>
+    选择一个文件: <input type="file" name="img" id="f" onchange="a();">
+    <input type="submit">
+    <br>
+    <select id="ff">
+
+    </select>
+    <script>
+        function a(){
+            alert(document.getElementById("f").files[0].name);
+            let option = document.createElement("option");
+            option.innerHTML = document.getElementById("f").files[0].name;
+            document.getElementById("ff").add(option);
+        }
+    </script>
+</form>
+</body>
+</html>

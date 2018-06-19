@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .addBorder{
+            border:1px solid #ccc;
+        }
+
+        #imgDiv{
+            width:200px;
+            height:auto;
+        }
+
+        #imgContent{
+            width: 100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+<form id="imgForm">
+    <input type="file" class="addBorder">
+    <br/>
+    <button type="button" onclick="loadImg()">获取图片</button>
+</form>
+
+<div class="addBorder" id="imgDiv">
+    <!--<img id="imgContent">-->
+    <img id="imgContent">
+</div>
+<!--<input type="file" name="file_upload" id="input">-->
+<!--<audio id="audio" autoplay controls></audio>-->
+<script src="js/jquery-3.3.1.js"></script>
+
+<script>
+    function loadImg(){
+        //获取文件,html对象
+        let file = $("#imgForm").find("input")[0].files[0];
+        //创建读取文件的对象，读取文件之后所生成的对应文件的base64码
+        let reader = new FileReader();
+        //创建文件读取相关的变量
+        let imgFile;
+        //为文件读取成功设置事件
+        reader.onload = function(e) {
+            alert('文件读取完成');
+            imgFile = e.target.result;
+            console.log(imgFile);
+            $("#imgContent").attr('src', imgFile);
+        };
+        //正式读取文件
+        reader.readAsDataURL(file);
+    }
+</script>
+</body>
+</html>
